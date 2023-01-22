@@ -1,4 +1,6 @@
 import tensorflow as tf
+import collections.abc as container_abcs
+from itertools import repeat
 
 
 def _to_channel_last(x: tf.Tensor) -> tf.Tensor:
