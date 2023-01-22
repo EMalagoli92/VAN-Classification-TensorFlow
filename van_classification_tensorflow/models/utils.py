@@ -37,4 +37,4 @@ def _ntuple(n):
             return x
         return tuple(repeat(x, n))
 
-    return 
+    return parse
