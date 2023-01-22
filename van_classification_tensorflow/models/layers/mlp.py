@@ -3,6 +3,8 @@ import tensorflow_addons as tfa
 from van_classification_tensorflow.models.layers.utils import Conv2d_, CustomNormalInitializer
 from van_classification_tensorflow.layers.dwconv import DWConv
 
+
+@tf.keras.utils.register_keras_serializable(package="van")
 class Mlp(tf.keras.layers.Layer):
     def __init__(self,
                  in_features,
