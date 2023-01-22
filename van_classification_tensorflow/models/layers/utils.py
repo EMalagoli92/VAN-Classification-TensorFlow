@@ -5,7 +5,7 @@ from typing import Union
 import tensorflow as tf
 import tensorflow_probability as tfp
 
-from gcvit_tensorflow.models.utils import _to_channel_first, _to_channel_last
+from van_classification_tensorflow.models.utils import _to_channel_first, _to_channel_last
 
 
 def norm_cdf(x):
