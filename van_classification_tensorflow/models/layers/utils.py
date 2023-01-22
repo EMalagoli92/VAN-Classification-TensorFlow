@@ -463,4 +463,46 @@ class DropPath_(tf.keras.layers.Layer):
         config.update(
             {"drop_prob": self.drop_prob, "scale_by_keep": self.scale_by_keep}
         )
-        return config    
+        return config
+    
+@tf.keras.utils.register_keras_serializable(package="van")
+class CustomNormalInitializer(tf.keras.initializers.Initializer):
+    """Custom Random Normal initializer for Conv2d layer present in the
+    original VAN implementation."""
+
+    def __init__(
+        self, kernel_size: Union[int, tuple, list], out_channels: int, groups: int = 1
+    ):
+        """
+        Parameters
+        ----------
+        kernel_size : Union[int, tuple, list]
+            Size of the convolving kernel.
+        out_channels : int
+            Number of channels produced by the convolution.
+        groups : int, optional
+            A positive integer specifying the number of groups in which
+            the input is split along the channel axis.
+            The default is 1.
+        """
+        self.kernel_size = kernel_size
+        self.out_channels = out_channels
+        self.groups = groups
+
+    def __call__(self, shape, dtype=None, **kwargs):
+        if isinstance(self.kernel_size, int):
+            kernel_product = self.kernel_size**2
+        else:
+            kernel_product = self.kernel_size[0] * self.kernel_size[1]
+        fan_out = kernel_product * self.out_channels
+        fan_out //= self.groups
+        return tf.random.normal(
+            shape, mean=0, stddev=math.sqrt(2.0 / fan_out), dtype=dtype
+        )
+
+    def get_config(self):
+        return {
+            "kernel_size": self.kernel_size,
+            "out_channels": self.out_channels,
+            "groups": self.groups,
+        }    
