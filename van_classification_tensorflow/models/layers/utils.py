@@ -5,7 +5,10 @@ from typing import Union
 import tensorflow as tf
 import tensorflow_probability as tfp
 
-from van_classification_tensorflow.models.utils import _to_channel_first, _to_channel_last
+from van_classification_tensorflow.models.utils import (
+    _to_channel_first,
+    _to_channel_last,
+)
 
 
 def norm_cdf(x):
@@ -101,8 +104,8 @@ class TruncNormalInitializer_(tf.keras.initializers.Initializer):
 
     def get_config(self):
         return {"mean": self.mean, "std": self.std, "a": self.a, "b": self.b}
-    
-    
+
+
 @tf.keras.utils.register_keras_serializable(package="van")
 class Linear_(tf.keras.layers.Dense):
     """TF2/Keras implementation of torch.nn.Linear."""
@@ -170,8 +173,8 @@ class Linear_(tf.keras.layers.Dense):
         config = super().get_config()
         config.update({"in_features": self.in_features})
         return config
-    
-    
+
+
 @tf.keras.utils.register_keras_serializable(package="van")
 class Conv2d_(tf.keras.layers.Layer):
     """TF2/Keras implementation of torch.nn.Conv2d."""
@@ -325,8 +328,8 @@ class Conv2d_(tf.keras.layers.Layer):
             }
         )
         return config
-    
-    
+
+
 @tf.keras.utils.register_keras_serializable(package="van")
 class LayerNorm_(tf.keras.layers.LayerNormalization):
     """TF2/Keras implementation of torch.nn.LayerNorm."""
@@ -365,7 +368,8 @@ class LayerNorm_(tf.keras.layers.LayerNormalization):
         config = super().get_config()
         config.update({"normalized_shape": self.normalized_shape})
         return config
-    
+
+
 @tf.keras.utils.register_keras_serializable(package="van")
 class Identity_(tf.keras.layers.Layer):
     """TF2/Keras implementation of torch.nn.Identity."""
@@ -387,8 +391,8 @@ class Identity_(tf.keras.layers.Layer):
     def get_config(self):
         config = super().get_config()
         return config
-    
-    
+
+
 def drop_path(
     x: tf.Tensor,
     drop_prob: float = 0.0,
@@ -464,7 +468,8 @@ class DropPath_(tf.keras.layers.Layer):
             {"drop_prob": self.drop_prob, "scale_by_keep": self.scale_by_keep}
         )
         return config
-    
+
+
 @tf.keras.utils.register_keras_serializable(package="van")
 class CustomNormalInitializer(tf.keras.initializers.Initializer):
     """Custom Random Normal initializer for Conv2d layer present in the
@@ -505,4 +510,4 @@ class CustomNormalInitializer(tf.keras.initializers.Initializer):
             "kernel_size": self.kernel_size,
             "out_channels": self.out_channels,
             "groups": self.groups,
-        }    
+        }
