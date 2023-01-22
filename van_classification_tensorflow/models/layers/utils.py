@@ -330,7 +330,7 @@ class Conv2d_(tf.keras.layers.Layer):
         return config
 
 
-@tf.keras.utils.register_keras_serializable(package="custom")
+@tf.keras.utils.register_keras_serializable(package="van")
 class BatchNorm2d_(tf.keras.layers.BatchNormalization):
     """TF2/Keras implementation of torch.nn.BatchNorm2d."""
 
