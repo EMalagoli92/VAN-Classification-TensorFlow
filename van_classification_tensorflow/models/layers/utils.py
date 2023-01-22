@@ -67,7 +67,7 @@ def trunc_normal_(
     return tf.cast(tensor, dtype)
 
 
-@tf.keras.utils.register_keras_serializable(package="custom")
+@tf.keras.utils.register_keras_serializable(package="van")
 class TruncNormalInitializer_(tf.keras.initializers.Initializer):
     """TF2/Keras initializer version of
     timm.models.layers.weight_init.trunc_normal_."""
@@ -103,7 +103,7 @@ class TruncNormalInitializer_(tf.keras.initializers.Initializer):
         return {"mean": self.mean, "std": self.std, "a": self.a, "b": self.b}
     
     
-@tf.keras.utils.register_keras_serializable(package="custom")
+@tf.keras.utils.register_keras_serializable(package="van")
 class Linear_(tf.keras.layers.Dense):
     """TF2/Keras implementation of torch.nn.Linear."""
 
@@ -172,7 +172,7 @@ class Linear_(tf.keras.layers.Dense):
         return config
     
     
-@tf.keras.utils.register_keras_serializable(package="custom")
+@tf.keras.utils.register_keras_serializable(package="van")
 class Conv2d_(tf.keras.layers.Layer):
     """TF2/Keras implementation of torch.nn.Conv2d."""
 
@@ -327,7 +327,7 @@ class Conv2d_(tf.keras.layers.Layer):
         return config
     
     
-@tf.keras.utils.register_keras_serializable(package="custom")
+@tf.keras.utils.register_keras_serializable(package="van")
 class LayerNorm_(tf.keras.layers.LayerNormalization):
     """TF2/Keras implementation of torch.nn.LayerNorm."""
 
@@ -366,7 +366,7 @@ class LayerNorm_(tf.keras.layers.LayerNormalization):
         config.update({"normalized_shape": self.normalized_shape})
         return config
     
-@tf.keras.utils.register_keras_serializable(package="custom")
+@tf.keras.utils.register_keras_serializable(package="van")
 class Identity_(tf.keras.layers.Layer):
     """TF2/Keras implementation of torch.nn.Identity."""
 
@@ -430,7 +430,7 @@ def drop_path(
     return x * random_tensor
 
 
-@tf.keras.utils.register_keras_serializable(package="custom")
+@tf.keras.utils.register_keras_serializable(package="van")
 class DropPath_(tf.keras.layers.Layer):
     """TF2/Keras implementation of timm.models.layers.DropPath.
 
