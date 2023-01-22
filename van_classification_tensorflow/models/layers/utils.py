@@ -7,6 +7,7 @@ import tensorflow_probability as tfp
 
 from gcvit_tensorflow.models.utils import _to_channel_first, _to_channel_last
 
+
 def norm_cdf(x):
     """Computes standard normal cumulative distribution."""
     return (1.0 + math.erf(x / math.sqrt(2.0))) / 2.0
