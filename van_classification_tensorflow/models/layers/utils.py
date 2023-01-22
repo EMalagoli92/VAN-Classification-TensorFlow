@@ -330,6 +330,36 @@ class Conv2d_(tf.keras.layers.Layer):
         return config
 
 
+@tf.keras.utils.register_keras_serializable(package="custom")
+class BatchNorm2d_(tf.keras.layers.BatchNormalization):
+    """TF2/Keras implementation of torch.nn.BatchNorm2d."""
+
+    def __init__(
+        self, epsilon: float = 1e-05, momentum: float = 0.9, axis: int = 1, **kwargs
+    ):
+        """
+        Parameters
+        ----------
+        epsilon : float, optional
+            A value added to the denominator for numerical stability.
+            The default is 1e-05.
+        momentum : float, optional
+            The value used for the running_mean and running_var computation.
+            The default is 0.9.
+        axis : int, optional
+            Integer, the axis that should be normalized
+            (typically the features axis).
+            The default is 1.
+        **kwargs
+            Additional keyword arguments.
+        """
+        super().__init__(**kwargs, epsilon=epsilon, momentum=momentum, axis=axis)
+
+    def get_config(self):
+        config = super().get_config()
+        return config
+
+
 @tf.keras.utils.register_keras_serializable(package="van")
 class LayerNorm_(tf.keras.layers.LayerNormalization):
     """TF2/Keras implementation of torch.nn.LayerNorm."""
