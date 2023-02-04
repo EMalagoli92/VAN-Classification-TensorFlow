@@ -35,13 +35,13 @@ class Block(tf.keras.layers.Layer):
                        )
         layer_scale_init_values = 1e-2
         self.layer_scale_1 = self.add_weight(name = "layer_scale_1",
-                                             shape = self.dim,
+                                             shape = [self.dim],
                                              initializer = tf.keras.initializers.Constant(layer_scale_init_values),
                                              trainable = True,
                                              dtype = self.dtype
                                              )
         self.layer_scale_2 = self.add_weight(name = "layer_scale_2",
-                                             shape = self.dim,
+                                             shape = [self.dim],
                                              initializer = tf.keras.initializers.Constant(layer_scale_init_values),
                                              trainable = True,
                                              dtype = self.dtype
