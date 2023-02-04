@@ -3,9 +3,9 @@ from van_classification_tensorflow import __version__
 import tensorflow.experimental.numpy as tnp
 from van_classification_tensorflow.models.config import MODELS_CONFIG, TF_WEIGHTS_URL
 from van_classification_tensorflow.models.utils import _to_channel_first
-from van_classification_tensorflow.layers.utils import LayerNorm_, Linear_, Identity_, TruncNormalInitializer_
-from van_classification_tensorflow.layers.overlap_patch_embed import OverlapPatchEmbed
-from van_classification_tensorflow.layers.block import Block
+from van_classification_tensorflow.models.layers.utils import LayerNorm_, Linear_, Identity_, TruncNormalInitializer_
+from van_classification_tensorflow.models.layers.overlap_patch_embed import OverlapPatchEmbed
+from van_classification_tensorflow.models.layers.block import Block
 
 @tf.keras.utils.register_keras_serializable(package="van")
 class VAN_(tf.keras.Model):
