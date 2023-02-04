@@ -17,7 +17,6 @@ class LKA(tf.keras.layers.Layer):
                              kernel_size = 5,
                              padding = 2,
                              groups = self.dim,
-                             name = "conv0",
                              kernel_initializer = CustomNormalInitializer(kernel_size = 5, out_channels = self.dim, groups = self.dim),
                              bias_initializer = tf.keras.initializers.Zeros(),
                              name = "conv0"
