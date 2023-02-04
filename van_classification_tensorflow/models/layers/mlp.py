@@ -1,7 +1,7 @@
 import tensorflow as tf
 import tensorflow_addons as tfa
 from van_classification_tensorflow.models.layers.utils import Conv2d_, CustomNormalInitializer
-from van_classification_tensorflow.layers.dwconv import DWConv
+from van_classification_tensorflow.models.layers.dwconv import DWConv
 
 
 @tf.keras.utils.register_keras_serializable(package="van")
