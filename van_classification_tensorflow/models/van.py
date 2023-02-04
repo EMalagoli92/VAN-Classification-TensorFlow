@@ -1,4 +1,6 @@
 import tensorflow as tf
+from van_classification_tensorflow import __version__
+from van_classification_tensorflow.models.config import MODELS_CONFIG, TF_WEIGHTS_URL
 from van_classification_tensorflow.models.utils import _to_channel_first
 from van_classification_tensorflow.layers.utils import LayerNorm_, Linear_, Identity_, TruncNormalInitializer_
 from van_classification_tensorflow.layers.overlap_patch_embed import OverlapPatchEmbed
@@ -142,4 +144,34 @@ class VAN_(tf.keras.Model):
 
     @classmethod
     def from_config(cls, config):
-        return cls(**config)    
+        return cls(**config)
+    
+    
+def VAN(configuration,
+        pretrained,
+        **kwargs):
+    if configuration is not None:
+        if configuration in MODELS_CONFIG.keys():
+            model = VAN_(**MODELS_CONFIG[configuration], **kwargs)
+            if pretrained:
+                if model.data_format == "channels_last":
+                    model.build((None, 224, 224, 3))
+                elif model.data_format == "channels_first":
+                    model.build((None, 3, 224, 224))
+                weights_path = "{}/{}/{}.h5".format(
+                    TF_WEIGHTS_URL, __version__, configuration
+                )
+                model_weights = tf.keras.utils.get_file(
+                    fname="{}.h5".format(configuration),
+                    origin=weights_path,
+                    cache_subdir="datasets/van_classification_tensorflow",
+                )
+                model.load_weights(model_weights)
+            return model
+        else:
+            raise KeyError(
+                f"{configuration} configuration not found. "
+                f"Valid values are: {list(MODELS_CONFIG.keys())}"
+            )
+    else:
+        return VAN_(**kwargs)
