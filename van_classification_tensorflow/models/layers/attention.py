@@ -1,7 +1,7 @@
 import tensorflow as tf
 import tensorflow_addons as tfa
 from van_classification_tensorflow.models.layers.utils import Conv2d_, CustomNormalInitializer
-from vab_classification_tensorflow.models.layers.lka import LKA
+from van_classification_tensorflow.models.layers.lka import LKA
 
 @tf.keras.utils.register_keras_serializable(package="van")
 class Attention(tf.keras.layers.Layer):
