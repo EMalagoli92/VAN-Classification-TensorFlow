@@ -1,5 +1,6 @@
 import tensorflow as tf
 from van_classification_tensorflow import __version__
+import tensorflow.experimental.numpy as tnp
 from van_classification_tensorflow.models.config import MODELS_CONFIG, TF_WEIGHTS_URL
 from van_classification_tensorflow.models.utils import _to_channel_first
 from van_classification_tensorflow.layers.utils import LayerNorm_, Linear_, Identity_, TruncNormalInitializer_
@@ -83,7 +84,7 @@ class VAN_(tf.keras.Model):
             for blk in block:
                 x = blk(x)
             x = tf.reshape(x,[tf.shape(x)[0],-1])
-            x = tf.experimental.numpy.swapaxes(x,1,2)
+            x = tnp.swapaxes(x,1,2)
             x = norm(x)
             if i != self.num_stages -1:
                 x = tf.reshape(x,[B,H,W,-1])
