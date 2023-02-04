@@ -30,3 +30,5 @@ MODELS_CONFIG: Dict[str,dict] = {"van_b0": {"embed_dims": [32, 64, 160, 256],
                                             "depths": [6,6,90,6],
                                             },                                   
                                  }
+
+TF_WEIGHTS_URL: str = ""
