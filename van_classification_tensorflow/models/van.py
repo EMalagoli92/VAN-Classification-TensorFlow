@@ -2,7 +2,7 @@ import tensorflow as tf
 from van_classification_tensorflow.layers.utils import LayerNorm_
 
 @tf.keras.utils.register_keras_serializable(package="van")
-class VAN(tf.keras.Model):
+class VAN_(tf.keras.Model):
     def __init__(self,
                  img_size=224,
                  in_chans=3,
