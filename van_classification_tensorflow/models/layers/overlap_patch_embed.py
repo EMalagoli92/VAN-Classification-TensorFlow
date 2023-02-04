@@ -1,6 +1,5 @@
 import tensorflow as tf
 from van_classification_tensorflow.models.layers.utils import BatchNorm2d_, Conv2d_
-from van_classification_tensorflow.models.utils import _ntuple
 
 
 @tf.keras.utils.register_keras_serializable(package="van")
@@ -21,12 +20,11 @@ class OverlapPatchEmbed(tf.keras.layers.Layer):
         self.embed_dim = embed_dim
         
     def build(self,input_shape):
-        _patch_size = _ntuple(2)(self.patch_size)
         self.proj = Conv2d_(in_channels = self.in_chans,
                             out_channels = self.embed_dim,
-                            kernel_size = _patch_size,
+                            kernel_size = self.patch_size,
                             stride = self.stride,
-                            padding = (_patch_size[0] // 2, _patch_size[1] // 2),
+                            padding = self.patch_size,
                             name = "proj"
                             )
         self.norm = BatchNorm2d_(self.embed_dim,name="norm")
