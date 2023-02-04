@@ -148,8 +148,8 @@ class VAN_(tf.keras.Model):
         return cls(**config)
     
     
-def VAN(configuration,
-        pretrained,
+def VAN(configuration = None,
+        pretrained = False,
         **kwargs):
     if configuration is not None:
         if configuration in MODELS_CONFIG.keys():
