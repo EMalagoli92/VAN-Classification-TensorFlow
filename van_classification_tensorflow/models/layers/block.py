@@ -1,7 +1,7 @@
 import tensorflow as tf
-from van_classification_tensorflow.layers.utils import BatchNorm2d_, DropPath_, Identity_
-from van_classification_tensorflow.layers.attention import Attention
-from van_classification_tensorflow.layers.mlp import Mlp
+from van_classification_tensorflow.models.layers.utils import BatchNorm2d_, DropPath_, Identity_
+from van_classification_tensorflow.models.layers.attention import Attention
+from van_classification_tensorflow.models.layers.mlp import Mlp
 
 
 @tf.keras.utils.register_keras_serializable(package="van")
