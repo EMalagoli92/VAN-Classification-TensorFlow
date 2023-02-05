@@ -83,7 +83,9 @@ class VAN_(tf.keras.Model):
             x, H, W = patch_embed(x)
             for blk in block:
                 x = blk(x)
-            x = tf.reshape(x,[tf.shape(x)[0],tf.shape(x)[1],-1])
+            dim1 = tf.shape(x)[1]
+            dim2 = tf.shape(x)[2] * tf.shape(x)[3]
+            x = tf.reshape(x,[tf.shape(x)[0],dim1,dim2])
             x = tnp.swapaxes(x,1,2)
             x = norm(x)
             if i != self.num_stages -1:
