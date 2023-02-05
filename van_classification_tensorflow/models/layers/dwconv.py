@@ -17,7 +17,8 @@ class DWConv(tf.keras.layers.Layer):
                               bias=True, 
                               groups=self.dim,
                               kernel_initializer = CustomNormalInitializer(kernel_size = 3, out_channels = self.dim, groups = self.dim),
-                              bias_initializer = tf.keras.initializers.Zeros()
+                              bias_initializer = tf.keras.initializers.Zeros(),
+                              name = "dwconv"
                               )
         super().build(input_shape)
         
