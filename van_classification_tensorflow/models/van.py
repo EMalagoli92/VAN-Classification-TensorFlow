@@ -89,7 +89,7 @@ class VAN_(tf.keras.Model):
             x = tnp.swapaxes(x,1,2)
             x = norm(x)
             if i != self.num_stages -1:
-                x = tf.reshape(x,[B,H,W,-1])
+                x = tf.reshape(x,[B,H,W,tf.cast((dim1*dim2)/(H*W),tf.int32)])
                 x = tf.transpose(x,perm=[0, 3, 1, 2])
         
         return tf.math.reduce_mean(x, axis=1)    
