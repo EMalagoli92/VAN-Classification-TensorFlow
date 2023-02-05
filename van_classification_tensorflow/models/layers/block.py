@@ -51,7 +51,7 @@ class Block(tf.keras.layers.Layer):
     
     def call(self,inputs,*args,**kwargs):
         x = inputs + self.drop_path(tf.expand_dims(tf.expand_dims(self.layer_scale_1,-1),-1) * self.attn(self.norm1(inputs)))
-        x = x + self.drop_path(tf.expand_dims(tf.expand_dims(self.layer_scale_2,-1),-1) * self.attn(self.norm1(x)))
+        x = x + self.drop_path(tf.expand_dims(tf.expand_dims(self.layer_scale_2,-1),-1) * self.mlp(self.norm2(x)))
         return x
         
     def get_config(self):
