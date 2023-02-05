@@ -89,7 +89,8 @@ class VAN_(tf.keras.Model):
             if i != self.num_stages -1:
                 x = tf.reshape(x,[B,H,W,-1])
                 x = tf.transpose(x,perm=[0, 3, 1, 2])
-            return tf.math.reduce_mean(x, axis=1)    
+        
+        return tf.math.reduce_mean(x, axis=1)    
             
     def call(self, inputs, *args, **kwargs):
         if self.data_format == "channels_last":
