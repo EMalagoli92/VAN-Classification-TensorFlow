@@ -24,7 +24,7 @@ class OverlapPatchEmbed(tf.keras.layers.Layer):
                             out_channels = self.embed_dim,
                             kernel_size = self.patch_size,
                             stride = self.stride,
-                            padding = self.patch_size,
+                            padding = self.patch_size // 2,
                             name = "proj"
                             )
         self.norm = BatchNorm2d_(self.embed_dim,name="norm")
