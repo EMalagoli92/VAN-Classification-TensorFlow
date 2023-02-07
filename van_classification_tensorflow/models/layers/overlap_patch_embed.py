@@ -1,5 +1,5 @@
 import tensorflow as tf
-from van_classification_tensorflow.models.layers.utils import BatchNorm2d_, Conv2d_
+from van_classification_tensorflow.models.layers.utils import BatchNorm2d_, Conv2d_, CustomNormalInitializer
 
 
 @tf.keras.utils.register_keras_serializable(package="van")
@@ -25,6 +25,8 @@ class OverlapPatchEmbed(tf.keras.layers.Layer):
                             kernel_size = self.patch_size,
                             stride = self.stride,
                             padding = self.patch_size // 2,
+                            kernel_initializer = CustomNormalInitializer(kernel_size = self.patch_size, out_channels = self.embed_dim),
+                            bias_initializer = tf.keras.initializers.Zeros(),
                             name = "proj"
                             )
         self.norm = BatchNorm2d_(self.embed_dim,name="norm")
