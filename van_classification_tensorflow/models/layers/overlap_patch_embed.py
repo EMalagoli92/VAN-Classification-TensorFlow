@@ -29,7 +29,7 @@ class OverlapPatchEmbed(tf.keras.layers.Layer):
                             bias_initializer = tf.keras.initializers.Zeros(),
                             name = "proj"
                             )
-        self.norm = BatchNorm2d_(self.embed_dim,name="norm")
+        self.norm = BatchNorm2d_(name="norm")
         super().build(input_shape)
         
     def call(self,inputs,*args,**kwargs):
