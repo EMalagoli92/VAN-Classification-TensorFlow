@@ -22,10 +22,10 @@ class Block(tf.keras.layers.Layer):
         self.act_layer = act_layer
         
     def build(self,input_shape):
-        self.norm1 = BatchNorm2d_(self.dim, name = "norm1")
+        self.norm1 = BatchNorm2d_(name = "norm1")
         self.attn = Attention(self.dim, name = "attn")
         self.drop_path = DropPath_(self.drop_path, name = "drop_path") if self.drop_path > 0. else Identity_(name = "drop_path")
-        self.norm2 = BatchNorm2d_(self.dim, name = "norm2")
+        self.norm2 = BatchNorm2d_(name = "norm2")
         mlp_hidden_dim = int(self.dim * self.mlp_ratio)
         self.mlp = Mlp(in_features = self.dim,
                        hidden_features = mlp_hidden_dim,
