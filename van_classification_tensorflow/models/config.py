@@ -38,4 +38,6 @@ MODELS_CONFIG: Dict[str,dict] = {"van_b0": {"embed_dims": [32, 64, 160, 256],
                                             },                                   
                                  }
 
+PRETRAINED_AVAILABLE: list = ["van_b0", "van_b1", "van_b2", "van_b3"]
+
 TF_WEIGHTS_URL: str = ""
