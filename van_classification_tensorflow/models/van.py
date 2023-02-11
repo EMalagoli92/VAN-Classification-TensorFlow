@@ -1,7 +1,7 @@
 import tensorflow as tf
 from van_classification_tensorflow import __version__
 import tensorflow.experimental.numpy as tnp
-from van_classification_tensorflow.models.config import MODELS_CONFIG, TF_WEIGHTS_URL
+from van_classification_tensorflow.models.config import MODELS_CONFIG, TF_WEIGHTS_URL, PRETRAINED_AVAILABLE
 from van_classification_tensorflow.models.utils import _to_channel_first
 from van_classification_tensorflow.models.layers.utils import LayerNorm_, Linear_, Identity_, TruncNormalInitializer_
 from van_classification_tensorflow.models.layers.overlap_patch_embed import OverlapPatchEmbed
@@ -158,19 +158,24 @@ def VAN(configuration = None,
         if configuration in MODELS_CONFIG.keys():
             model = VAN_(**MODELS_CONFIG[configuration], **kwargs)
             if pretrained:
-                if model.data_format == "channels_last":
-                    model.build((None, 224, 224, 3))
-                elif model.data_format == "channels_first":
-                    model.build((None, 3, 224, 224))
-                weights_path = "{}/{}/{}.h5".format(
-                    TF_WEIGHTS_URL, __version__, configuration
-                )
-                model_weights = tf.keras.utils.get_file(
-                    fname="{}.h5".format(configuration),
-                    origin=weights_path,
-                    cache_subdir="datasets/van_classification_tensorflow",
-                )
-                model.load_weights(model_weights)
+                if configuration in PRETRAINED_AVAILABLE: 
+                    if model.data_format == "channels_last":
+                        model.build((None, 224, 224, 3))
+                    elif model.data_format == "channels_first":
+                        model.build((None, 3, 224, 224))
+                    weights_path = "{}/{}/{}.h5".format(
+                        TF_WEIGHTS_URL, __version__, configuration
+                    )
+                    model_weights = tf.keras.utils.get_file(
+                        fname="{}.h5".format(configuration),
+                        origin=weights_path,
+                        cache_subdir="datasets/van_classification_tensorflow",
+                    )
+                    model.load_weights(model_weights)
+                else:
+                    raise ValueError("Pretrained weights only available for the "\
+                                     f"following configurations: {PRETRAINED_AVAILABLE}"
+                                     )
             return model
         else:
             raise KeyError(
