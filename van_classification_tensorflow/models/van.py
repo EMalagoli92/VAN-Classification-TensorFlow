@@ -58,9 +58,9 @@ class VAN_(tf.keras.Model):
             norm = LayerNorm_(self.embed_dims[i],epsilon=1e-6,name=f"norm{i+1}")
             cur += self.depths[i]
             
-            setattr(self, f"patch_embed{i + 1}", patch_embed)
-            setattr(self, f"block{i + 1}", block)
-            setattr(self, f"norm{i + 1}", norm)
+            setattr(self, f"patch_embed{i+1}", patch_embed)
+            setattr(self, f"block{i+1}", block)
+            setattr(self, f"norm{i+1}", norm)
             
         self.head = Linear_(in_features = self.embed_dims[3], 
                             units = self.num_classes,
@@ -77,9 +77,9 @@ class VAN_(tf.keras.Model):
         B = x_shape[0]
         
         for i in range(self.num_stages):
-            patch_embed = getattr(self, f"patch_embed{i + 1}")
-            block = getattr(self, f"block{i + 1}")
-            norm = getattr(self, f"norm{i + 1}")
+            patch_embed = getattr(self, f"patch_embed{i+1}")
+            block = getattr(self, f"block{i+1}")
+            norm = getattr(self, f"norm{i+1}")
             x, H, W = patch_embed(x)
             for blk in block:
                 x = blk(x)
