@@ -5,10 +5,8 @@ import random
 
 import numpy as np
 import tensorflow as tf
-import tensorflow.experimental.numpy as tnp
 from tensorflow.python.framework import random_seed
 
-tnp.experimental_enable_numpy_behavior()
 
 # Set Seed
 SEED = 123

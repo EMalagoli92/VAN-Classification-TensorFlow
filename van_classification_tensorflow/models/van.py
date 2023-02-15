@@ -1,6 +1,5 @@
 import tensorflow as tf
 from van_classification_tensorflow import __version__
-import tensorflow.experimental.numpy as tnp
 from van_classification_tensorflow.models.config import MODELS_CONFIG, TF_WEIGHTS_URL, PRETRAINED_AVAILABLE
 from van_classification_tensorflow.models.utils import _to_channel_first
 from van_classification_tensorflow.models.layers.utils import LayerNorm_, Linear_, Identity_, TruncNormalInitializer_
@@ -84,12 +83,13 @@ class VAN_(tf.keras.Model):
             for blk in block:
                 x = blk(x)
             dim1 = tf.shape(x)[1]
-            dim2 = tf.shape(x)[2] * tf.shape(x)[3]
+            dim2 = tf.math.multiply(tf.shape(x)[2],tf.shape(x)[3])
             x = tf.reshape(x,[tf.shape(x)[0],dim1,dim2])
-            x = tnp.swapaxes(x,1,2)
+            x = tf.transpose(x,[0,2,1])
             x = norm(x)
             if i != self.num_stages -1:
-                x = tf.reshape(x,[B,H,W,tf.cast((dim1*dim2)/(H*W),tf.int32)])
+                new_dim = tf.math.divide(tf.math.multiply(dim1,dim2),tf.math.multiply(H,W))
+                x = tf.reshape(x,[B,H,W,tf.cast(new_dim,tf.int32)])
                 x = tf.transpose(x,perm=[0, 3, 1, 2])
         
         return tf.math.reduce_mean(x, axis=1)    
