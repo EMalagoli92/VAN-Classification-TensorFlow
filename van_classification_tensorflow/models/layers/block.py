@@ -24,7 +24,7 @@ class Block(tf.keras.layers.Layer):
     def build(self,input_shape):
         self.norm1 = BatchNorm2d_(name = "norm1")
         self.attn = Attention(self.dim, name = "attn")
-        self.drop_path = DropPath_(self.drop_path, name = "drop_path") if self.drop_path > 0. else Identity_(name = "drop_path")
+        self.drop_path_ = DropPath_(self.drop_path, name = "drop_path") if self.drop_path > 0. else Identity_(name = "drop_path")
         self.norm2 = BatchNorm2d_(name = "norm2")
         mlp_hidden_dim = int(self.dim * self.mlp_ratio)
         self.mlp = Mlp(in_features = self.dim,
@@ -50,8 +50,8 @@ class Block(tf.keras.layers.Layer):
         
     
     def call(self,inputs,*args,**kwargs):
-        x = inputs + self.drop_path(tf.expand_dims(tf.expand_dims(self.layer_scale_1,-1),-1) * self.attn(self.norm1(inputs)))
-        x = x + self.drop_path(tf.expand_dims(tf.expand_dims(self.layer_scale_2,-1),-1) * self.mlp(self.norm2(x)))
+        x = inputs + self.drop_path_(tf.expand_dims(tf.expand_dims(self.layer_scale_1,-1),-1) * self.attn(self.norm1(inputs)))
+        x = x + self.drop_path_(tf.expand_dims(tf.expand_dims(self.layer_scale_2,-1),-1) * self.mlp(self.norm2(x)))
         return x
         
     def get_config(self):
