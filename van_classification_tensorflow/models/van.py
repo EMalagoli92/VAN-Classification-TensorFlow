@@ -83,13 +83,12 @@ class VAN_(tf.keras.Model):
             for blk in block:
                 x = blk(x)
             dim1 = tf.shape(x)[1]
-            dim2 = tf.math.multiply(tf.shape(x)[2],tf.shape(x)[3])
+            dim2 = tf.math.multiply(H,W)
             x = tf.reshape(x,[tf.shape(x)[0],dim1,dim2])
             x = tf.transpose(x,[0,2,1])
             x = norm(x)
             if i != self.num_stages -1:
-                new_dim = tf.math.divide(tf.math.multiply(dim1,dim2),tf.math.multiply(H,W))
-                x = tf.reshape(x,[B,H,W,tf.cast(new_dim,tf.int32)])
+                x = tf.reshape(x,[B,H,W,dim1])
                 x = tf.transpose(x,perm=[0, 3, 1, 2])
         
         return tf.math.reduce_mean(x, axis=1)    
