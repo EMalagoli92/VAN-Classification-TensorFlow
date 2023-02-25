@@ -9,7 +9,6 @@ from van_classification_tensorflow.models.layers.block import Block
 @tf.keras.utils.register_keras_serializable(package="van")
 class VAN_(tf.keras.Model):
     def __init__(self,
-                 img_size=224,
                  in_chans=3,
                  num_classes=1000,
                  embed_dims=[64,128,256,512],
@@ -24,7 +23,6 @@ class VAN_(tf.keras.Model):
                  **kwargs
                  ):
         super().__init__(**kwargs)
-        self.img_size = img_size
         self.in_chans = in_chans
         self.num_classes = num_classes
         self.embed_dims = embed_dims
@@ -46,8 +44,7 @@ class VAN_(tf.keras.Model):
         cur = 0
         
         for i in range(self.num_stages):
-            patch_embed = OverlapPatchEmbed(img_size = self.img_size if i == 0 else self.img_size // (2 **(i+1)),
-                                            patch_size = 7 if i==0 else 3,
+            patch_embed = OverlapPatchEmbed(patch_size = 7 if i==0 else 3,
                                             stride = 4 if i==0 else 2,
                                             in_chans = self.in_chans if i==0 else self.embed_dims[i -1],
                                             embed_dim = self.embed_dims[i],
@@ -130,8 +127,7 @@ class VAN_(tf.keras.Model):
         
     def get_config(self):
         config = super().get_config()
-        config.update({"img_size": self.img_size,
-                       "in_chans": self.in_chans,
+        config.update({"in_chans": self.in_chans,
                        "num_classes": self.num_classes,
                        "embed_dims": self.embed_dims,
                        "mlp_ratios": self.mlp_ratios,

@@ -5,7 +5,6 @@ from van_classification_tensorflow.models.layers.utils import BatchNorm2d_, Conv
 @tf.keras.utils.register_keras_serializable(package="van")
 class OverlapPatchEmbed(tf.keras.layers.Layer):
     def __init__(self, 
-                 img_size = 224,
                  patch_size = 7,
                  stride = 4,
                  in_chans = 3,
@@ -13,7 +12,6 @@ class OverlapPatchEmbed(tf.keras.layers.Layer):
                  **kwargs
                  ):
         super().__init__(**kwargs)
-        self.img_size = img_size
         self.patch_size = patch_size
         self.stride = stride
         self.in_chans = in_chans
@@ -42,8 +40,7 @@ class OverlapPatchEmbed(tf.keras.layers.Layer):
         
     def get_config(self):
         config = super().get_config()
-        config.update({"img_size": self.img_size,
-                       "patch_size": self.patch_size,
+        config.update({"patch_size": self.patch_size,
                        "stride": self.stride,
                        "in_chans": self.in_chans,
                        "embed_dim": self.embed_dim})
