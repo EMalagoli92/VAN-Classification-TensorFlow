@@ -1,7 +1,7 @@
 import tensorflow as tf
 from van_classification_tensorflow import __version__
 from van_classification_tensorflow.models.config import MODELS_CONFIG, TF_WEIGHTS_URL
-from van_classification_tensorflow.models.utils import _to_channel_first
+from van_classification_tensorflow.models.utils import _to_channel_first, _ntuple
 from van_classification_tensorflow.models.layers.utils import LayerNorm_, Linear_, Identity_, TruncNormalInitializer_
 from van_classification_tensorflow.models.layers.overlap_patch_embed import OverlapPatchEmbed
 from van_classification_tensorflow.models.layers.block import Block
@@ -148,16 +148,20 @@ class VAN_(tf.keras.Model):
     
 def VAN(configuration = None,
         pretrained = False,
+        img_resolution = None,
         **kwargs):
     if configuration is not None:
         if configuration in MODELS_CONFIG.keys():
             model = VAN_(**MODELS_CONFIG[configuration]["spec"], **kwargs)
             if pretrained:
-                if configuration in PRETRAINED_AVAILABLE: 
+                pretrained_img_resolution = MODELS_CONFIG[configuration]["pretrained_img_resolution"]
+                if pretrained_img_resolution is not None:
+                    img_resolution = img_resolution if img_resolution is not None else pretrained_img_resolution
+                    img_resolution = _ntuple(2)(img_resolution)
                     if model.data_format == "channels_last":
-                        model.build((None, 224, 224, 3))
+                        model.build((None, img_resolution[0], img_resolution[1], 3))
                     elif model.data_format == "channels_first":
-                        model.build((None, 3, 224, 224))
+                        model.build((None, 3,img_resolution[0], img_resolution[1]))
                     weights_path = "{}/{}/{}.h5".format(
                         TF_WEIGHTS_URL, __version__, configuration
                     )
@@ -169,7 +173,7 @@ def VAN(configuration = None,
                     model.load_weights(model_weights)
                 else:
                     raise ValueError("Pretrained weights only available for the "\
-                                     f"following configurations: {PRETRAINED_AVAILABLE}"
+                                     f"following configurations: {[conf for conf in MODELS_CONFIG.keys() if MODELS_CONFIG[conf]['pretrained_img_resolution'] is not None]}"
                                      )
             return model
         else:
