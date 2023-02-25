@@ -151,7 +151,7 @@ def VAN(configuration = None,
         **kwargs):
     if configuration is not None:
         if configuration in MODELS_CONFIG.keys():
-            model = VAN_(**MODELS_CONFIG[configuration], **kwargs)
+            model = VAN_(**MODELS_CONFIG[configuration]["spec"], **kwargs)
             if pretrained:
                 if configuration in PRETRAINED_AVAILABLE: 
                     if model.data_format == "channels_last":
