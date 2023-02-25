@@ -17,7 +17,6 @@ class VAN_(tf.keras.Model):
                  drop_path_rate=0.,
                  depths=[3,4,6,3],
                  num_stages=4,
-                 flag=False,
                  classifier_activation = None,
                  data_format = tf.keras.backend.image_data_format(),
                  **kwargs
@@ -31,13 +30,9 @@ class VAN_(tf.keras.Model):
         self.drop_path_rate = drop_path_rate
         self.depths = depths
         self.num_stages = num_stages
-        self.flag = flag
         self.classifier_activation = classifier_activation
         self.data_format = data_format
-        
-        if self.flag == False:
-            self.num_classes_ = num_classes
-        
+               
         dpr = [i * self.drop_path_rate / (sum(self.depths) - 1)
                for i in range(sum(self.depths))
                ]
@@ -135,7 +130,6 @@ class VAN_(tf.keras.Model):
                        "drop_path_rate": self.drop_path_rate,
                        "depths": self.depths,
                        "num_stages": self.num_stages,
-                       "flag": self.flag,
                        "classifier_activation": self.classifier_activation,
                        "data_format": self.data_format
                        })
