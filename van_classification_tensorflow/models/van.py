@@ -17,6 +17,7 @@ class VAN_(tf.keras.Model):
                  drop_path_rate=0.,
                  depths=[3,4,6,3],
                  num_stages=4,
+                 include_top = True,
                  classifier_activation = None,
                  data_format = tf.keras.backend.image_data_format(),
                  **kwargs
@@ -30,6 +31,7 @@ class VAN_(tf.keras.Model):
         self.drop_path_rate = drop_path_rate
         self.depths = depths
         self.num_stages = num_stages
+        self.include_top = include_top
         self.classifier_activation = classifier_activation
         self.data_format = data_format
                
@@ -53,15 +55,16 @@ class VAN_(tf.keras.Model):
             setattr(self, f"block{i+1}", block)
             setattr(self, f"norm{i+1}", norm)
             
-        self.head = Linear_(in_features = self.embed_dims[3], 
-                            units = self.num_classes,
-                            kernel_initializer = TruncNormalInitializer_(std = .02),
-                            bias_initializer = tf.keras.initializers.Zeros(),
-                            name = "head"
-                            ) if self.num_classes > 0 else Identity_(name='head')
-        
-        if self.classifier_activation is not None:
-            self.classifier_activation_ = tf.keras.layers.Activation(self.classifier_activation, dtype=self.dtype, name="pred")
+        if self.include_top:
+            self.head = Linear_(in_features = self.embed_dims[3], 
+                                units = self.num_classes,
+                                kernel_initializer = TruncNormalInitializer_(std = .02),
+                                bias_initializer = tf.keras.initializers.Zeros(),
+                                name = "head"
+                                )
+            
+            if self.classifier_activation is not None:
+                self.classifier_activation_ = tf.keras.layers.Activation(self.classifier_activation, dtype=self.dtype, name="pred")
            
     def forward_features(self, x):
         x_shape = tf.shape(x)
@@ -89,9 +92,10 @@ class VAN_(tf.keras.Model):
         if self.data_format == "channels_last":
             inputs = _to_channel_first(inputs)
         x = self.forward_features(inputs)
-        x = self.head(x)
-        if hasattr(self, "classifier_activation_"):
-            x = self.classifier_activation_(x)
+        if self.include_top:
+            x = self.head(x)
+            if hasattr(self, "classifier_activation_"):
+                x = self.classifier_activation_(x)
         return x
             
     def build(self, input_shape):
@@ -130,6 +134,7 @@ class VAN_(tf.keras.Model):
                        "drop_path_rate": self.drop_path_rate,
                        "depths": self.depths,
                        "num_stages": self.num_stages,
+                       "include_top": self.include_top,
                        "classifier_activation": self.classifier_activation,
                        "data_format": self.data_format
                        })
@@ -164,7 +169,7 @@ def VAN(configuration = None,
                         origin=weights_path,
                         cache_subdir="datasets/van_classification_tensorflow",
                     )
-                    model.load_weights(model_weights)
+                    model.load_weights(model_weights, by_name = (not model.include_top))
                 else:
                     raise ValueError("Pretrained weights only available for the "\
                                      f"following configurations: {[conf for conf in MODELS_CONFIG.keys() if MODELS_CONFIG[conf]['pretrained_img_resolution'] is not None]}"
