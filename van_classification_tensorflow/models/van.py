@@ -1,6 +1,6 @@
 import tensorflow as tf
 from van_classification_tensorflow import __version__
-from van_classification_tensorflow.models.config import MODELS_CONFIG, TF_WEIGHTS_URL, PRETRAINED_AVAILABLE
+from van_classification_tensorflow.models.config import MODELS_CONFIG, TF_WEIGHTS_URL
 from van_classification_tensorflow.models.utils import _to_channel_first
 from van_classification_tensorflow.models.layers.utils import LayerNorm_, Linear_, Identity_, TruncNormalInitializer_
 from van_classification_tensorflow.models.layers.overlap_patch_embed import OverlapPatchEmbed
