@@ -1,6 +1,7 @@
-import tensorflow as tf
 import collections.abc as container_abcs
 from itertools import repeat
+
+import tensorflow as tf
 
 
 def _to_channel_last(x: tf.Tensor) -> tf.Tensor:
@@ -29,6 +30,7 @@ def _to_channel_first(x: tf.Tensor) -> tf.Tensor:
         Tensor of shape: (B, C, H, W).
     """
     return tf.transpose(x, perm=[0, 3, 1, 2])
+
 
 def _ntuple(n):
     def parse(x):

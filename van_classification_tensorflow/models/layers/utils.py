@@ -293,7 +293,7 @@ class Conv2d_(tf.keras.layers.Layer):
     def uniform_initializer_spec(self):
         # Uniform Initializer
         if isinstance(self.kernel_size, int):
-            kernel_product = self.kernel_size**2
+            kernel_product = self.kernel_size ** 2
         else:
             kernel_product = self.kernel_size[0] * self.kernel_size[1]
         k = self.groups / (self.in_channels * kernel_product)
@@ -528,7 +528,7 @@ class CustomNormalInitializer(tf.keras.initializers.Initializer):
 
     def __call__(self, shape, dtype=None, **kwargs):
         if isinstance(self.kernel_size, int):
-            kernel_product = self.kernel_size**2
+            kernel_product = self.kernel_size ** 2
         else:
             kernel_product = self.kernel_size[0] * self.kernel_size[1]
         fan_out = kernel_product * self.out_channels
