@@ -7,6 +7,7 @@ import numpy as np
 import tensorflow as tf
 from tensorflow.python.framework import random_seed
 
+
 # Set Seed
 SEED = 123
 os.environ["PYTHONHASHSEED"] = str(SEED)
