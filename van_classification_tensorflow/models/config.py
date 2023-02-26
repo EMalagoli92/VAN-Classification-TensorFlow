@@ -13,12 +13,7 @@ MODELS_CONFIG: Dict[str, dict] = {
     "van_b1": {
         "spec": {
             "embed_dims": [64, 128, 320, 512],
-            "mlp_ratios": [
-                8,
-                8,
-                4,
-                4,
-            ],
+            "mlp_ratios": [8, 8, 4, 4],
             "depths": [2, 2, 4, 2],
             "name": "van_b1",
         },
