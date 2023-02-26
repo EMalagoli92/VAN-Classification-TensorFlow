@@ -1,4 +1,5 @@
 import tensorflow as tf
+from typing import List, Literal, Optional, Union
 from van_classification_tensorflow import __version__
 from van_classification_tensorflow.models.config import MODELS_CONFIG, TF_WEIGHTS_URL
 from van_classification_tensorflow.models.utils import _to_channel_first, _ntuple
@@ -9,17 +10,17 @@ from van_classification_tensorflow.models.layers.block import Block
 @tf.keras.utils.register_keras_serializable(package="van")
 class VAN_(tf.keras.Model):
     def __init__(self,
-                 in_chans=3,
-                 num_classes=1000,
-                 embed_dims=[64,128,256,512],
-                 mlp_ratios=[4,4,4,4],
-                 drop_rate=0.,
-                 drop_path_rate=0.,
-                 depths=[3,4,6,3],
-                 num_stages=4,
-                 include_top = True,
-                 classifier_activation = None,
-                 data_format = tf.keras.backend.image_data_format(),
+                 in_chans: int =3,
+                 num_classes: int =1000,
+                 embed_dims: List[int] =[64,128,256,512],
+                 mlp_ratios: List[int] =[4,4,4,4],
+                 drop_rate: float=0.,
+                 drop_path_rate: float=0.,
+                 depths: List[int]=[3,4,6,3],
+                 num_stages: int=4,
+                 include_top: bool = True,
+                 classifier_activation: Optional[str]= None,
+                 data_format: Literal["channels_first", "channels_last"] = tf.keras.backend.image_data_format(),
                  **kwargs
                  ):
         super().__init__(**kwargs)
@@ -145,9 +146,9 @@ class VAN_(tf.keras.Model):
         return cls(**config)
     
     
-def VAN(configuration = None,
-        pretrained = False,
-        img_resolution = None,
+def VAN(configuration: Optional[Literal["van_b0","van_b1","van_b2","van_b3","van_b4","van_b5","van_b6"]] = None,
+        pretrained: bool = False,
+        img_resolution: Optional[Union[int,tuple,list]] = None,
         **kwargs):
     if configuration is not None:
         if configuration in MODELS_CONFIG.keys():
