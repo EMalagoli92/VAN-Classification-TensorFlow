@@ -5,10 +5,10 @@ from van_classification_tensorflow.models.layers.utils import BatchNorm2d_, Conv
 @tf.keras.utils.register_keras_serializable(package="van")
 class OverlapPatchEmbed(tf.keras.layers.Layer):
     def __init__(self, 
-                 patch_size = 7,
-                 stride = 4,
-                 in_chans = 3,
-                 embed_dim = 768,
+                 patch_size: int = 7,
+                 stride: int = 4,
+                 in_chans: int = 3,
+                 embed_dim: int = 768,
                  **kwargs
                  ):
         super().__init__(**kwargs)
