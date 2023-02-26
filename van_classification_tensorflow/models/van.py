@@ -1,5 +1,5 @@
 import tensorflow as tf
-from typing import List, Literal, Optional, Union, Tuple, List
+from typing import List, Literal, Optional, Union, Tuple
 from van_classification_tensorflow import __version__
 from van_classification_tensorflow.models.config import MODELS_CONFIG, TF_WEIGHTS_URL
 from van_classification_tensorflow.models.utils import _to_channel_first, _ntuple
