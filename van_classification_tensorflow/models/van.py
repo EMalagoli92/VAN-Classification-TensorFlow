@@ -149,7 +149,7 @@ class VAN_(tf.keras.Model):
 def VAN(configuration: Optional[Literal["van_b0","van_b1","van_b2","van_b3","van_b4","van_b5","van_b6"]] = None,
         pretrained: bool = False,
         img_resolution: Optional[Union[int,Tuple[int],List[int]]] = None,
-        **kwargs):
+        **kwargs) -> tf.keras.Model:
     if configuration is not None:
         if configuration in MODELS_CONFIG.keys():
             model = VAN_(**MODELS_CONFIG[configuration]["spec"], **kwargs)
