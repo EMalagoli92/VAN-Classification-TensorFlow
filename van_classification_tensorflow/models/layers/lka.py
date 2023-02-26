@@ -5,7 +5,7 @@ from van_classification_tensorflow.models.layers.utils import Conv2d_, CustomNor
 @tf.keras.utils.register_keras_serializable(package="van")
 class LKA(tf.keras.layers.Layer):
     def __init__(self,
-                 dim,
+                 dim: int,
                  **kwargs
                  ):
         super().__init__(**kwargs)
