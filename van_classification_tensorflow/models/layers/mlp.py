@@ -1,3 +1,4 @@
+from typing import Optional
 import tensorflow as tf
 import tensorflow_addons as tfa
 from van_classification_tensorflow.models.layers.utils import Conv2d_, CustomNormalInitializer
@@ -7,11 +8,11 @@ from van_classification_tensorflow.models.layers.dwconv import DWConv
 @tf.keras.utils.register_keras_serializable(package="van")
 class Mlp(tf.keras.layers.Layer):
     def __init__(self,
-                 in_features,
-                 hidden_features = None,
-                 out_features = None,
-                 act_layer = "gelu",
-                 drop=0.,
+                 in_features: int,
+                 hidden_features: Optional[int] = None,
+                 out_features: Optional[int] = None,
+                 act_layer: str = "gelu",
+                 drop: float=0.,
                  **kwargs
                  ):
         super().__init__(**kwargs)
