@@ -4,7 +4,9 @@ from van_classification_tensorflow.models.layers.utils import Conv2d_, CustomNor
 
 @tf.keras.utils.register_keras_serializable(package="van")
 class DWConv(tf.keras.layers.Layer):
-    def __init__(self,dim=768,**kwargs):
+    def __init__(self,
+                 dim: int=768,
+                 **kwargs):
         super().__init__(**kwargs)
         self.dim = dim
         
