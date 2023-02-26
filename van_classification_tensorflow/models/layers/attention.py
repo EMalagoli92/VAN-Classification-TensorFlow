@@ -5,7 +5,9 @@ from van_classification_tensorflow.models.layers.lka import LKA
 
 @tf.keras.utils.register_keras_serializable(package="van")
 class Attention(tf.keras.layers.Layer):
-    def __init__(self, d_model,**kwargs):
+    def __init__(self, 
+                 d_model: int,
+                 **kwargs):
         super().__init__(**kwargs)
         self.d_model = d_model
         
