@@ -1,5 +1,5 @@
 import tensorflow as tf
-from typing import List, Literal, Optional, Union
+from typing import List, Literal, Optional, Union, Tuple, List
 from van_classification_tensorflow import __version__
 from van_classification_tensorflow.models.config import MODELS_CONFIG, TF_WEIGHTS_URL
 from van_classification_tensorflow.models.utils import _to_channel_first, _ntuple
@@ -148,7 +148,7 @@ class VAN_(tf.keras.Model):
     
 def VAN(configuration: Optional[Literal["van_b0","van_b1","van_b2","van_b3","van_b4","van_b5","van_b6"]] = None,
         pretrained: bool = False,
-        img_resolution: Optional[Union[int,tuple,list]] = None,
+        img_resolution: Optional[Union[int,Tuple[int],List[int]]] = None,
         **kwargs):
     if configuration is not None:
         if configuration in MODELS_CONFIG.keys():
