@@ -210,7 +210,11 @@ def VAN(
                     )
                     model.load_weights(model_weights, by_name=(not model.include_top))
                 else:
-                    pretrained_available = [conf for conf in MODELS_CONFIG.keys() if MODELS_CONFIG[conf]['pretrained_img_resolution'] is not None]
+                    pretrained_available = [
+                        conf
+                        for conf in MODELS_CONFIG.keys()
+                        if MODELS_CONFIG[conf]["pretrained_img_resolution"] is not None
+                    ]
                     raise ValueError(
                         "Pretrained weights only available for the "
                         f"following configurations: {pretrained_available}"
