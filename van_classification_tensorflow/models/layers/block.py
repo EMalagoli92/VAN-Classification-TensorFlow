@@ -7,11 +7,11 @@ from van_classification_tensorflow.models.layers.mlp import Mlp
 @tf.keras.utils.register_keras_serializable(package="van")
 class Block(tf.keras.layers.Layer):
     def __init__(self,
-                 dim,
-                 mlp_ratio = 4.,
-                 drop = 0.,
-                 drop_path = 0.,
-                 act_layer = "gelu",
+                 dim: int,
+                 mlp_ratio: float = 4.,
+                 drop: float = 0.,
+                 drop_path: float = 0.,
+                 act_layer: str = "gelu",
                  **kwargs
                  ):
         super().__init__(**kwargs)
