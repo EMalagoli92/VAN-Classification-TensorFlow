@@ -10,6 +10,7 @@ from van_classification_tensorflow.models.layers.utils import (
 
 @tf.keras.utils.register_keras_serializable(package="van")
 class Attention(tf.keras.layers.Layer):
+    """ Basic attention module in VAN Block."""
     def __init__(self, d_model: int, **kwargs):
         """
         Parameters
