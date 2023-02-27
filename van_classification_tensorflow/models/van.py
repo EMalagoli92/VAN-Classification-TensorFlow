@@ -227,6 +227,39 @@ def VAN(
     img_resolution: Optional[Union[int, Tuple[int], List[int]]] = None,
     **kwargs,
 ) -> tf.keras.Model:
+    """
+    Parameters
+    ----------
+    configuration : Optional[Literal["van_b0", "van_b1", "van_b2", "van_b3", 
+                                     "van_b4", "van_b5", "van_b6"]], optional
+        Name of VAN predefined configuration.
+        Possible values are: "van_b0", "van_b1", "van_b2", "van_b3", "van_b4", 
+        "van_b5", "van_b6".
+        The default is None.
+    pretrained : bool, optional
+        Whether to use ImageNet pretrained weights. 
+        The default is False.
+    img_resolution : Optional[Union[int, Tuple[int], List[int]]], optional
+        Input image resolution. 
+        The default is None.
+    **kwargs
+        Additional keyword arguments.
+
+    Raises
+    ------
+    ValueError
+        If the chosen configuration is not among those with ImageNet pretrained
+        weights, i.e. not in:
+        ["van_b0","van_b1","van_b2","van_b3"]    
+    KeyError
+        If choosen configuration not in: 
+        ["van_b0","van_b1","van_b2","van_b3","van_b4","van_b5","van_b6"]
+
+    Returns
+    -------
+    tf.keras.Model
+        VAN model.
+    """
     if configuration is not None:
         if configuration in MODELS_CONFIG.keys():
             model = VAN_(**MODELS_CONFIG[configuration]["spec"], **kwargs)
