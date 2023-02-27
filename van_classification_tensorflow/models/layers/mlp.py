@@ -21,6 +21,26 @@ class Mlp(tf.keras.layers.Layer):
         drop: float = 0.0,
         **kwargs
     ):
+        """
+        Parameters
+        ----------
+        in_features : int
+            Input features dimension.
+        hidden_features : Optional[int], optional
+            Hidden features dimension.
+            The default is None.
+        out_features : Optional[int], optional
+            Output features dimension.
+            The default is None.
+        act_layer : str, optional
+            Name of activation layer.
+            The default is "gelu".
+        drop : float, optional
+            Dropout rate.
+            The default is 0.0.
+        **kwargs
+            Additional keyword arguments.
+        """
         super().__init__(**kwargs)
         self.in_features = in_features
         self.hidden_features = hidden_features
