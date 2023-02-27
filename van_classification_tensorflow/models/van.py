@@ -35,6 +35,51 @@ class VAN_(tf.keras.Model):
         ] = tf.keras.backend.image_data_format(),
         **kwargs,
     ):
+        """
+        Parameters
+        ----------
+        in_chans : int, optional
+            Number of input channels. 
+            The default is 3.
+        num_classes : int, optional
+            Number of classes. 
+            The default is 1000.
+        embed_dims : List[int], optional
+            Dimensions of embedding. 
+            The default is [64, 128, 256, 512].
+        mlp_ratios : List[int], optional
+            MLP ratios. 
+            The default is [4, 4, 4, 4].
+        drop_rate : float, optional
+            Dropout rate after embedding. 
+            The default is 0.0.
+        drop_path_rate : float, optional
+            Drop path rate. 
+            The default is 0.0.
+        depths : List[int], optional
+            Number of layers in each stage. 
+            The default is [3, 4, 6, 3].
+        num_stages : int, optional
+            Number of stages. 
+            The default is 4.
+        include_top : bool, optional
+            Whether to include the fully-connected layer at the top, as the 
+            last layer of the network. 
+            The default is True.
+        classifier_activation : Optional[str], optional
+            String name for a tf.keras.layers.Activation layer.
+            The default is None.
+        data_format : Literal["channels_first", "channels_last"], optional
+            A string, one of "channels_last" or "channels_first".
+            The ordering of the dimensions in the inputs.
+            "channels_last" corresponds to inputs with shape:
+            (batch_size, height, width, channels)
+            while "channels_first" corresponds to inputs with shape
+            (batch_size, channels, height, width).
+            The default is tf.keras.backend.image_data_format().
+        **kwargs
+            Additional keyword arguments.
+        """
         super().__init__(**kwargs)
         self.in_chans = in_chans
         self.num_classes = num_classes
