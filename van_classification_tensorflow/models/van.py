@@ -229,6 +229,8 @@ def VAN(
     **kwargs,
 ) -> tf.keras.Model:
     """
+    Wrapper function VAN model.
+    
     Parameters
     ----------
     configuration : Optional[Literal["van_b0", "van_b1", "van_b2", "van_b3", 
