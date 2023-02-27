@@ -9,6 +9,15 @@ from van_classification_tensorflow.models.layers.utils import (
 @tf.keras.utils.register_keras_serializable(package="van")
 class DWConv(tf.keras.layers.Layer):
     def __init__(self, dim: int = 768, **kwargs):
+        """
+        Parameters
+        ----------
+        dim : int, optional
+            Number of input channels. 
+            The default is 768.
+        **kwargs
+            Additional keyword arguments.
+        """
         super().__init__(**kwargs)
         self.dim = dim
 
