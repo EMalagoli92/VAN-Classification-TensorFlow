@@ -11,6 +11,7 @@ from van_classification_tensorflow.models.layers.utils import (
 
 @tf.keras.utils.register_keras_serializable(package="van")
 class Block(tf.keras.layers.Layer):
+    """A block of VAN."""
     def __init__(
         self,
         dim: int,
@@ -20,6 +21,26 @@ class Block(tf.keras.layers.Layer):
         act_layer: str = "gelu",
         **kwargs
     ):
+        """
+        Parameters
+        ----------
+        dim : int
+            Number of input channels.
+        mlp_ratio : float, optional
+            MLP ratio. 
+            The default is 4.0.
+        drop : float, optional
+            Dropout rate after embedding.
+            The default is 0.0.
+        drop_path : float, optional
+            Drop path rate.
+            The default is 0.0.
+        act_layer : str, optional
+            Name of activation layer.
+            The default is "gelu".
+        **kwargs
+            Additional keyword arguments.
+        """
         super().__init__(**kwargs)
         self.dim = dim
         self.mlp_ratio = mlp_ratio
