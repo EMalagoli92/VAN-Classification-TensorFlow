@@ -11,6 +11,14 @@ from van_classification_tensorflow.models.layers.utils import (
 @tf.keras.utils.register_keras_serializable(package="van")
 class Attention(tf.keras.layers.Layer):
     def __init__(self, d_model: int, **kwargs):
+        """
+        Parameters
+        ----------
+        d_model : int
+            Number of input channels.
+        **kwargs
+            Additional keyword arguments.
+        """
         super().__init__(**kwargs)
         self.d_model = d_model
 
