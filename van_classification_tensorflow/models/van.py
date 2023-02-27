@@ -18,6 +18,7 @@ from van_classification_tensorflow.models.utils import _ntuple, _to_channel_firs
 
 @tf.keras.utils.register_keras_serializable(package="van")
 class VAN_(tf.keras.Model):
+    """Visual Attention Network."""
     def __init__(
         self,
         in_chans: int = 3,
