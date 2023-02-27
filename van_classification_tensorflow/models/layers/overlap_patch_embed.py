@@ -9,6 +9,7 @@ from van_classification_tensorflow.models.layers.utils import (
 
 @tf.keras.utils.register_keras_serializable(package="van")
 class OverlapPatchEmbed(tf.keras.layers.Layer):
+    """Image to Patch Embedding of VAN."""
     def __init__(
         self,
         patch_size: int = 7,
@@ -17,6 +18,24 @@ class OverlapPatchEmbed(tf.keras.layers.Layer):
         embed_dim: int = 768,
         **kwargs
     ):
+        """
+        Parameters
+        ----------
+        patch_size : int, optional
+            Size of a patch. 
+            The default is 7.
+        stride : int, optional
+            Stride of the convolution operation. 
+            The default is 4.
+        in_chans : int, optional
+            Number of inpout channels. 
+            The default is 3.
+        embed_dim : int, optional
+            Dimension of hidden layer. 
+            The default is 768.
+        **kwargs
+            Additional keyword arguments.
+        """
         super().__init__(**kwargs)
         self.patch_size = patch_size
         self.stride = stride
