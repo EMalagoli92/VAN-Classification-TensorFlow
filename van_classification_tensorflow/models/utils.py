@@ -33,7 +33,7 @@ def _to_channel_first(x: tf.Tensor) -> tf.Tensor:
     return tf.transpose(x, perm=[0, 3, 1, 2])
 
 
-def _ntuple(n: int)-> Callable[[Any], tuple]:
+def _ntuple(n: int) -> Callable[[Any], tuple]:
     """
     Parameters
     ----------
@@ -43,10 +43,11 @@ def _ntuple(n: int)-> Callable[[Any], tuple]:
     Returns
     -------
     Callable[[Any], tuple]
-        A function that takes an input and returns a tuple of n elements, 
+        A function that takes an input and returns a tuple of n elements,
         all equal to the input.
     """
-    def parse(x: Any)->tuple:
+
+    def parse(x: Any) -> tuple:
         if isinstance(x, container_abcs.Iterable):
             return x
         return tuple(repeat(x, n))
