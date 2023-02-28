@@ -251,7 +251,7 @@ def VAN(
     Raises
     ------
     ValueError
-        If the choosen configuration is not among those with ImageNet pretrained
+        If choosen configuration is not among those with ImageNet pretrained
         weights, i.e. not in:
         ["van_b0","van_b1","van_b2","van_b3"]
     KeyError
