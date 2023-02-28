@@ -44,7 +44,7 @@ def _ntuple(n: int)-> Callable[[Any], tuple]:
     -------
     Callable[[Any], tuple]
         A function that takes an input and returns a tuple of n elements, 
-        all equal to input.
+        all equal to the input.
     """
     def parse(x: Any)->tuple:
         if isinstance(x, container_abcs.Iterable):
