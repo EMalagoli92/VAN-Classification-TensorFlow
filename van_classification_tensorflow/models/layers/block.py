@@ -12,6 +12,7 @@ from van_classification_tensorflow.models.layers.utils import (
 @tf.keras.utils.register_keras_serializable(package="van")
 class Block(tf.keras.layers.Layer):
     """A block of VAN."""
+
     def __init__(
         self,
         dim: int,
@@ -27,7 +28,7 @@ class Block(tf.keras.layers.Layer):
         dim : int
             Number of input channels.
         mlp_ratio : float, optional
-            MLP ratio. 
+            MLP ratio.
             The default is 4.0.
         drop : float, optional
             Dropout rate after embedding.

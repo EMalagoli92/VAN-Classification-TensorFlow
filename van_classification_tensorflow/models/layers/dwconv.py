@@ -13,7 +13,7 @@ class DWConv(tf.keras.layers.Layer):
         Parameters
         ----------
         dim : int, optional
-            Number of input channels. 
+            Number of input channels.
             The default is 768.
         **kwargs
             Additional keyword arguments.

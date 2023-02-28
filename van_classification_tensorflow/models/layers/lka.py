@@ -9,6 +9,7 @@ from van_classification_tensorflow.models.layers.utils import (
 @tf.keras.utils.register_keras_serializable(package="van")
 class LKA(tf.keras.layers.Layer):
     """Large Kernel Attention(LKA) of VAN."""
+
     def __init__(self, dim: int, **kwargs):
         """
         Parameters

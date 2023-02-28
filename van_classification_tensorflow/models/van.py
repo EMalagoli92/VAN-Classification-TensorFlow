@@ -19,6 +19,7 @@ from van_classification_tensorflow.models.utils import _ntuple, _to_channel_firs
 @tf.keras.utils.register_keras_serializable(package="van")
 class VAN_(tf.keras.Model):
     """Visual Attention Network."""
+
     def __init__(
         self,
         in_chans: int = 3,
@@ -40,32 +41,32 @@ class VAN_(tf.keras.Model):
         Parameters
         ----------
         in_chans : int, optional
-            Number of input channels. 
+            Number of input channels.
             The default is 3.
         num_classes : int, optional
-            Number of classes. 
+            Number of classes.
             The default is 1000.
         embed_dims : List[int], optional
-            Dimensions of embedding. 
+            Dimensions of embedding.
             The default is [64, 128, 256, 512].
         mlp_ratios : List[int], optional
-            MLP ratios. 
+            MLP ratios.
             The default is [4, 4, 4, 4].
         drop_rate : float, optional
-            Dropout rate after embedding. 
+            Dropout rate after embedding.
             The default is 0.0.
         drop_path_rate : float, optional
-            Drop path rate. 
+            Drop path rate.
             The default is 0.0.
         depths : List[int], optional
-            Number of layers in each stage. 
+            Number of layers in each stage.
             The default is [3, 4, 6, 3].
         num_stages : int, optional
-            Number of stages. 
+            Number of stages.
             The default is 4.
         include_top : bool, optional
-            Whether to include the fully-connected layer at the top, as the 
-            last layer of the network. 
+            Whether to include the fully-connected layer at the top, as the
+            last layer of the network.
             The default is True.
         classifier_activation : Optional[str], optional
             String name for a tf.keras.layers.Activation layer.
@@ -228,22 +229,21 @@ def VAN(
     img_resolution: Optional[Union[int, Tuple[int], List[int]]] = None,
     **kwargs,
 ) -> tf.keras.Model:
-    """
-    Wrapper function VAN model.
-    
+    """Wrapper function VAN model.
+
     Parameters
     ----------
-    configuration : Optional[Literal["van_b0", "van_b1", "van_b2", "van_b3", 
+    configuration : Optional[Literal["van_b0", "van_b1", "van_b2", "van_b3",
                                      "van_b4", "van_b5", "van_b6"]], optional
         Name of VAN predefined configuration.
-        Possible values are: "van_b0", "van_b1", "van_b2", "van_b3", "van_b4", 
+        Possible values are: "van_b0", "van_b1", "van_b2", "van_b3", "van_b4",
         "van_b5", "van_b6".
         The default is None.
     pretrained : bool, optional
-        Whether to use ImageNet pretrained weights. 
+        Whether to use ImageNet pretrained weights.
         The default is False.
     img_resolution : Optional[Union[int, Tuple[int], List[int]]], optional
-        Input image resolution. 
+        Input image resolution.
         The default is None.
     **kwargs
         Additional keyword arguments.
@@ -253,9 +253,9 @@ def VAN(
     ValueError
         If the chosen configuration is not among those with ImageNet pretrained
         weights, i.e. not in:
-        ["van_b0","van_b1","van_b2","van_b3"]    
+        ["van_b0","van_b1","van_b2","van_b3"]
     KeyError
-        If choosen configuration not in: 
+        If choosen configuration not in:
         ["van_b0","van_b1","van_b2","van_b3","van_b4","van_b5","van_b6"]
 
     Returns
