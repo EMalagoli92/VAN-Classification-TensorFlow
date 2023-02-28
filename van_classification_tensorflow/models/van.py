@@ -229,7 +229,7 @@ def VAN(
     img_resolution: Optional[Union[int, Tuple[int], List[int]]] = None,
     **kwargs,
 ) -> tf.keras.Model:
-    """Wrapper function VAN model.
+    """Wrapper function for VAN model.
 
     Parameters
     ----------
