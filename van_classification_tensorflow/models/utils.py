@@ -11,7 +11,7 @@ def _to_channel_last(x: tf.Tensor) -> tf.Tensor:
     ----------
     x : tf.Tensor
         Tensor of shape: (B, C, H, W).
-    
+
     Returns
     -------
     tf.Tensor
@@ -26,7 +26,7 @@ def _to_channel_first(x: tf.Tensor) -> tf.Tensor:
     ----------
     x : tf.Tensor
         Tensor of shape: (B, H, W, C).
-    
+
     Returns
     -------
     tf.Tensor
