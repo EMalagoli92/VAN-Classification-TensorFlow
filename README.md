@@ -42,3 +42,24 @@ TensorFlow implementation and ImageNet ported weights have been compared to the 
 | VAN-B1 | 224x224 |  |  |  |  | 13.9M |
 | VAN-B2 | 224x224 |  |  |  |  | 26.6M |
 | VAN-B3 | 224x224 |  |  |  |  | 44.8M |
+
+
+<div id="installation"/>
+
+## Installation
+
+<div id="usage"/>
+
+## Usage
+
+<div id="acknowledgement"/>
+
+## Acknowledgement
+
+<div id="citations"/>
+
+## Citations
+
+<div id="license"/>
+
+## License
