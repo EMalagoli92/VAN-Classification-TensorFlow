@@ -55,6 +55,8 @@ TensorFlow implementation and ImageNet ported weights have been compared to the 
 <div id="acknowledgement"/>
 
 ## Acknowledgement
+- [VAN-Classification](https://github.com/Visual-Attention-Network/VAN-Classification) (Official PyTorch implementation)
+
 
 <div id="citations"/>
 
