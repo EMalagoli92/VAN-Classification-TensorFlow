@@ -1,3 +1,11 @@
+<div align="center">
+
+  <a href="https://www.tensorflow.org">![TensorFLow](https://img.shields.io/badge/TensorFlow-2.X-orange?style=for-the-badge) 
+  <a href="https://github.com/EMalagoli92/VAN-Classification-TensorFlow/blob/main/LICENSE">![License](https://img.shields.io/github/license/EMalagoli92/VAN-Classification-TensorFlow?style=for-the-badge) 
+  <a href="https://www.python.org">![Python](https://img.shields.io/badge/python-%3E%3D%203.9-blue?style=for-the-badge)</a>  
+  
+</div>
+
 # VAN-Classification-TensorFlow
 TensorFlow 2.X reimplementation of [Visual Attention Network](https://arxiv.org/abs/2202.09741v5), Meng-Hao Guo, Cheng-Ze Lu, Zheng-Ning Liu, Ming-Ming Cheng, Shi-Min Hu.
 - Exact TensorFlow reimplementation of official PyTorch repo, including `timm` modules used by authors, preserving models and layers structure.
