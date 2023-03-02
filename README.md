@@ -87,7 +87,79 @@ model = VAN(
 ```
 - Use a predefined VAN configuration.
 ```python
-<INSERT>
+from van_classification_tensorflow import VAN
+
+model = VAN(
+    configuration="van_b0", data_format="channels_last", classifier_activation="softmax"
+)
+
+model.build((None, 224, 224, 3))
+print(model.summary())
+```
+```
+Model: "van_b0"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ patch_embed1 (OverlapPatchE  ((None, 32, 56, 56),     4864      
+ mbed)                        (),                                
+                              ())                                
+                                                                 
+ block1/0 (Block)            (None, 32, 56, 56)        25152     
+                                                                 
+ block1/1 (Block)            (None, 32, 56, 56)        25152     
+                                                                 
+ block1/2 (Block)            (None, 32, 56, 56)        25152     
+                                                                 
+ norm1 (LayerNorm_)          (None, 3136, 32)          64        
+                                                                 
+ patch_embed2 (OverlapPatchE  ((None, 64, 28, 28),     18752     
+ mbed)                        (),                                
+                              ())                                
+                                                                 
+ block2/0 (Block)            (None, 64, 28, 28)        89216     
+                                                                 
+ block2/1 (Block)            (None, 64, 28, 28)        89216     
+                                                                 
+ block2/2 (Block)            (None, 64, 28, 28)        89216     
+                                                                 
+ norm2 (LayerNorm_)          (None, 784, 64)           128       
+                                                                 
+ patch_embed3 (OverlapPatchE  ((None, 160, 14, 14),    92960     
+ mbed)                        (),                                
+                              ())                                
+                                                                 
+ block3/0 (Block)            (None, 160, 14, 14)       303040    
+                                                                 
+ block3/1 (Block)            (None, 160, 14, 14)       303040    
+                                                                 
+ block3/2 (Block)            (None, 160, 14, 14)       303040    
+                                                                 
+ block3/3 (Block)            (None, 160, 14, 14)       303040    
+                                                                 
+ block3/4 (Block)            (None, 160, 14, 14)       303040    
+                                                                 
+ norm3 (LayerNorm_)          (None, 196, 160)          320       
+                                                                 
+ patch_embed4 (OverlapPatchE  ((None, 256, 7, 7),      369920    
+ mbed)                        (),                                
+                              ())                                
+                                                                 
+ block4/0 (Block)            (None, 256, 7, 7)         755200    
+                                                                 
+ block4/1 (Block)            (None, 256, 7, 7)         755200    
+                                                                 
+ norm4 (LayerNorm_)          (None, 49, 256)           512       
+                                                                 
+ head (Linear_)              (None, 1000)              257000    
+                                                                 
+ pred (Activation)           (None, 1000)              0         
+                                                                 
+=================================================================
+Total params: 4,113,224
+Trainable params: 4,105,800
+Non-trainable params: 7,424
+_________________________________________________________________
 ```
 - Train from scratch the model.
 ```python
