@@ -69,7 +69,21 @@ Tested on *Ubuntu 20.04.4 LTS x86_64*, *python 3.9.7*.
 ## Usage
 - Define a custom VAN configuration
 ```python
-<INSERT>
+from van_classification_tensorflow import VAN
+
+# Define a custom VAN configuration
+model = VAN(
+    in_chans=3,
+    num_classes=1000,
+    embed_dims=[64, 128, 256, 512],
+    mlp_ratios=[4, 4, 4, 4],
+    drop_rate=0.0,
+    drop_path_rate=0.0,
+    depths=[3, 4, 6, 3],
+    num_stages=4,
+    classifier_activation="softmax",
+    data_format="channels_last",
+)
 ```
 - Use a predefined VAN configuration.
 ```python
