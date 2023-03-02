@@ -38,10 +38,10 @@ TensorFlow implementation and ImageNet ported weights have been compared to the 
 ### Models pre-trained on ImageNet-1K
 | Configuration  | Resolution | Top-1 (Original) | Top-1 (Ported) | Top-5 (Original) | Top-5 (Ported) | #Params
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
-| VAN-B0 | 224x224 |  |  |  |  | 4.1M |
-| VAN-B1 | 224x224 |  |  |  |  | 13.9M |
-| VAN-B2 | 224x224 |  |  |  |  | 26.6M |
-| VAN-B3 | 224x224 |  |  |  |  | 44.8M |
+| VAN-B0 | 224x224 | 0.59 | 0.59 | 0.81 | 0.81 | 4.1M |
+| VAN-B1 | 224x224 | 0.64 | 0.64 | 0.84 | 0.84 | 13.9M |
+| VAN-B2 | 224x224 | 0.69 | 0.69 | 0.88 | 0.88 | 26.6M |
+| VAN-B3 | 224x224 | 0.71 | 0.71 | 0.89 | 0.89 | 44.8M |
 
 
 <div id="installation"/>
