@@ -163,7 +163,13 @@ _________________________________________________________________
 ```
 - Train from scratch the model.
 ```python
-<INSERT>
+# Example
+model.compile(
+    optimizer="sgd",
+    loss="sparse_categorical_crossentropy",
+    metrics=["accuracy", "sparse_top_k_categorical_accuracy"],
+)
+model.fit(x, y)
 ```
 - Use ported ImageNet pretrained weights.
 ```python
