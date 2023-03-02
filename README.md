@@ -173,7 +173,11 @@ model.fit(x, y)
 ```
 - Use ported ImageNet pretrained weights.
 ```python
-<INSERT>
+# Example
+from van_classification_tensorflow import VAN
+
+model = VAN(configuration="van_b1", pretrained=True, classifier_activation="softmax")
+y_pred = model(image)
 ```
 
 <div id="acknowledgement"/>
