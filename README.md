@@ -67,6 +67,22 @@ Tested on *Ubuntu 20.04.4 LTS x86_64*, *python 3.9.7*.
 <div id="usage"/>
 
 ## Usage
+- Define a custom VAN configuration
+```python
+<INSERT>
+```
+- Use a predefined VAN configuration.
+```python
+<INSERT>
+```
+- Train from scratch the model.
+```python
+<INSERT>
+```
+- Use ported ImageNet pretrained weights.
+```python
+<INSERT>
+```
 
 <div id="acknowledgement"/>
 
