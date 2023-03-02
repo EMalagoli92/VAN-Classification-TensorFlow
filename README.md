@@ -81,6 +81,7 @@ model = VAN(
     drop_path_rate=0.0,
     depths=[3, 4, 6, 3],
     num_stages=4,
+    include_top=True,
     classifier_activation="softmax",
     data_format="channels_last",
 )
@@ -176,8 +177,30 @@ model.fit(x, y)
 # Example
 from van_classification_tensorflow import VAN
 
-model = VAN(configuration="van_b1", pretrained=True, classifier_activation="softmax")
+model = VAN(
+    configuration="van_b1",
+    pretrained=True,
+    include_top=True,
+    classifier_activation="softmax",
+)
 y_pred = model(image)
+```
+
+- Use ported ImageNet pretrained weights for feature extraction (`include_top=False`).
+```python
+import tensorflow as tf
+
+from van_classification_tensorflow import VAN
+
+# Get Features
+inputs = tf.keras.layers.Input(shape=(224, 224, 3), dtype="float32")
+features = VAN(configuration="van_b0", pretrained=True, include_top=False)(inputs)
+
+
+# Custom classification
+num_classes = 10
+outputs = tf.keras.layers.Dense(num_classes, activation="softmax")(features)
+model = tf.keras.models.Model(inputs=inputs, outputs=outputs)
 ```
 
 <div id="acknowledgement"/>
