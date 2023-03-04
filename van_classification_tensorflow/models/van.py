@@ -243,7 +243,7 @@ def VAN(
         Whether to use ImageNet pretrained weights.
         The default is False.
     img_resolution : Optional[Union[int, Tuple[int], List[int]]], optional
-        Input image resolution.
+        Input image resolution (H,W).
         The default is None.
     **kwargs
         Additional keyword arguments.
