@@ -67,4 +67,6 @@ MODELS_CONFIG: Dict[str, dict] = {
 }
 
 
-TF_WEIGHTS_URL: str = ""
+TF_WEIGHTS_URL: str = (
+    "https://github.com/EMalagoli92/VAN-Classification-TensorFlow/releases/download"
+)
