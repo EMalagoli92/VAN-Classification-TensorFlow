@@ -233,4 +233,4 @@ model = tf.keras.models.Model(inputs=inputs, outputs=outputs)
 <div id="license"/>
 
 ## License
-This work is made available under the [MIT License](https://github.com/EMalagoli92/VAN-Classification-TensorFlow/blob/main/LICENSE)
+This work is made available under the [MIT License](https://github.com/EMalagoli92/VAN-Classification-TensorFlow/blob/main/LICENSE).
