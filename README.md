@@ -75,7 +75,7 @@ Tested on *Ubuntu 20.04.4 LTS x86_64*, *python 3.9.7*.
 <div id="usage"/>
 
 ## Usage
-- Define a custom VAN configuration
+- Define a custom VAN configuration.
 ```python
 from van_classification_tensorflow import VAN
 
