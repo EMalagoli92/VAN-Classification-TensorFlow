@@ -1,4 +1,3 @@
-from itertools import repeat
 from typing import List, Tuple, Union
 
 import tensorflow as tf
@@ -34,7 +33,9 @@ def _to_channel_first(x: tf.Tensor) -> tf.Tensor:
     return tf.transpose(x, perm=[0, 3, 1, 2])
 
 
-def _imgr2tuple(x: Union[int, Tuple[int], List[int]]) -> Union[Tuple[int], List[int]]:
+def _imgr2tuple(
+    x: Union[int, Tuple[int, int], List[int]]
+) -> Union[Tuple[int, int], List[int]]:
     """
     Parameters
     ----------
@@ -58,7 +59,7 @@ def _imgr2tuple(x: Union[int, Tuple[int], List[int]]) -> Union[Tuple[int], List[
     ):
         return x
     elif type(x) == int:
-        return tuple(repeat(x, 2))
+        return (x, x)
     else:
         raise ValueError(
             "Image resolution must be an integer or tuple/list of 2 integers."
