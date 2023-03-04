@@ -39,7 +39,7 @@ def _imgr2tuple(
     """
     Parameters
     ----------
-    x : Union[int, Tuple[int], List[int]]
+    x : Union[int, Tuple[int, int], List[int]]
         Image resolution.
 
     Raises
@@ -49,7 +49,7 @@ def _imgr2tuple(
 
     Returns
     -------
-    Union[Tuple[int], List[int]]
+    Union[Tuple[int, int], List[int]]
         Image resolution casted in tuple/list of 2 integers.
     """
     if (
