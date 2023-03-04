@@ -13,7 +13,7 @@ from van_classification_tensorflow.models.layers.utils import (
     Linear_,
     TruncNormalInitializer_,
 )
-from van_classification_tensorflow.models.utils import _ntuple, _to_channel_first
+from van_classification_tensorflow.models.utils import _imgr2tuple, _to_channel_first
 
 
 @tf.keras.utils.register_keras_serializable(package="van")
@@ -276,7 +276,7 @@ def VAN(
                         if img_resolution is not None
                         else pretrained_img_resolution
                     )
-                    img_resolution = _ntuple(2)(img_resolution)
+                    img_resolution = _imgr2tuple(img_resolution)
                     if model.data_format == "channels_last":
                         model.build((None, img_resolution[0], img_resolution[1], 3))
                     elif model.data_format == "channels_first":
