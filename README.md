@@ -57,15 +57,15 @@ Metrics difference: `0`.
 <div id="installation"/>
 
 ## Installation
-- Install from PyPI
+- Install from PyPI.
 ```
 pip install van-classification-tensorflow
 ```
-- Install from GitHub
+- Install from GitHub.
 ```
 pip install git+https://github.com/EMalagoli92/VAN-Classification-TensorFlow
 ```
-- Clone the repo and install necessary packages 
+- Clone the repo and install necessary packages.
 ```
 git clone https://github.com/EMalagoli92/VAN-Classification-TensorFlow.git
 pip install -r requirements.txt
