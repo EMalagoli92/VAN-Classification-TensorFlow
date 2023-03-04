@@ -1,6 +1,6 @@
 import collections.abc
 from itertools import repeat
-from typing import Any, Callable, Iterable
+from typing import Any, Callable
 
 import tensorflow as tf
 
