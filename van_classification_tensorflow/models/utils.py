@@ -1,6 +1,5 @@
-import collections.abc
 from itertools import repeat
-from typing import Any, Callable, Iterable
+from typing import List, Tuple, Union
 
 import tensorflow as tf
 
@@ -35,25 +34,32 @@ def _to_channel_first(x: tf.Tensor) -> tf.Tensor:
     return tf.transpose(x, perm=[0, 3, 1, 2])
 
 
-def _ntuple(n: int) -> Callable[[Any], collections.abc.Iterable[Any]]:
+def _imgr2tuple(x: Union[int, Tuple[int], List[int]]) -> Union[Tuple[int], List[int]]:
     """
     Parameters
     ----------
-    n : int
-        The length of the desired tuple.
+    x : Union[int, Tuple[int], List[int]]
+        Image resolution.
+
+    Raises
+    ------
+    ValueError
+        If image resolution is neither an integer nor a tuple/list of 2 integers.
 
     Returns
     -------
-    Callable[[Any], collections.abc.Iterable[Any]]
-        A function such that:
-            - if the input is an iterable returns the input;
-            - if the input is not an iterable returns a tuple of n elements, all equal
-              to the input.
+    Union[Tuple[int], List[int]]
+        Image resolution casted in tuple/list of 2 integers.
     """
-
-    def parse(x: Any) -> collections.abc.Iterable[Any]:
-        if isinstance(x, collections.abc.Iterable):
-            return x
-        return tuple(repeat(x, n))
-
-    return parse
+    if (
+        isinstance(x, (tuple, list))
+        and (len(x) == 2)
+        and all(isinstance(x_, int) for x_ in x)
+    ):
+        return x
+    elif type(x) == int:
+        return tuple(repeat(x, 2))
+    else:
+        raise ValueError(
+            "Image resolution must be an integer or tuple/list of 2 integers."
+        )
