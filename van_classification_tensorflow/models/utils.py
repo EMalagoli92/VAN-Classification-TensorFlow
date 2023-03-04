@@ -1,4 +1,4 @@
-import collections.abc as container_abcs
+import collections.abc
 from itertools import repeat
 from typing import Any, Callable, Iterable
 
@@ -35,7 +35,7 @@ def _to_channel_first(x: tf.Tensor) -> tf.Tensor:
     return tf.transpose(x, perm=[0, 3, 1, 2])
 
 
-def _ntuple(n: int) -> Callable[[Any], Iterable[Any]]:
+def _ntuple(n: int) -> Callable[[Any], collections.abc.Iterable[Any]]:
     """
     Parameters
     ----------
@@ -44,15 +44,15 @@ def _ntuple(n: int) -> Callable[[Any], Iterable[Any]]:
 
     Returns
     -------
-    Callable[[Any], Iterable[Any]]
+    Callable[[Any], collections.abc.Iterable[Any]]
         A function such that:
             - if the input is an iterable returns the input;
             - if the input is not an iterable returns a tuple of n elements, all equal
               to the input.
     """
 
-    def parse(x: Any) -> Iterable[Any]:
-        if isinstance(x, container_abcs.Iterable):
+    def parse(x: Any) -> collections.abc.Iterable[Any]:
+        if isinstance(x, collections.abc.Iterable):
             return x
         return tuple(repeat(x, n))
 
