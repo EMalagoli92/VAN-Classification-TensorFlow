@@ -214,7 +214,7 @@ model = tf.keras.models.Model(inputs=inputs, outputs=outputs)
 <div id="acknowledgement"/>
 
 ## Acknowledgement
-- [VAN-Classification](https://github.com/Visual-Attention-Network/VAN-Classification) (Official PyTorch implementation)
+- [VAN-Classification](https://github.com/Visual-Attention-Network/VAN-Classification) (Official PyTorch implementation).
 
 
 <div id="citations"/>
