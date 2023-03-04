@@ -226,7 +226,7 @@ def VAN(
         Literal["van_b0", "van_b1", "van_b2", "van_b3", "van_b4", "van_b5", "van_b6"]
     ] = None,
     pretrained: bool = False,
-    img_resolution: Optional[Union[int, Tuple[int], List[int]]] = None,
+    img_resolution: Optional[Union[int, Tuple[int, int], List[int]]] = None,
     **kwargs,
 ) -> tf.keras.Model:
     """Wrapper function for VAN model.
